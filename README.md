@@ -27,3 +27,36 @@ The following figure explains each mode:
 
 ***
 
+## Script
+
+The generic script that we utilize follows this format:
+
+```
+samtools view -h -o [INDEXED SAM FILE] [INDEXED BAM FILE]
+
+htseq-count -m union -f sam -r name -t exon -i gene_id -s no [INDEXED SAMLE FILE] [GTF FILE] 
+```
+
+Let's explain what each step does. 
+
+### `samtools`
+
+Though not explicitly a part of the `HTSeq` universe, [Samtools](http://samtools.sourceforge.net) is a ubiquitous utility used in sequence analysis pipelines. The `view` function converts BAM files to SAM files (which are human readable). 
+
+  * `-h` adds a head to the SAM file
+  * `-o` sets the output file name
+
+### `htseq-count`
+
+This is the function that performs the counts in features. 
+
+  * `-m union`: use the `union` mode, as explained above
+  * `-f sam`: format of the input data. Here, a SAM file. 
+  * `-r name`: for paired-end data, the alignemtn have to be sorted by either read name or alignment position. Here, we're letting `htseq-count` know that it's been sorted by name.
+  * `-t exon`: feature type from the GTF file to be used. 
+  * `-i gene_id`:  attribute from the GTF file to be used as the feature ID.
+  * `-s no`:  lettting `htseq-count` know that the data is *not* from a strand-specific assay. 
+
+***
+
+
