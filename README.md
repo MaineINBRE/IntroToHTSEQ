@@ -24,6 +24,7 @@ The following figure explains each mode:
   <img src="Images/counts.png"/>
  </kbd>
  </p>
+ Image from <a href="http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html">here</a>
 
 ***
 
